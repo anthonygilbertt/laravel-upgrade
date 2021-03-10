@@ -1,0 +1,20 @@
+version: '2.0'
+services:
+  backend:
+    image: laraedit/laraedit
+    ports:
+        - 9000:80
+    volumes:
+        - .:/var/www/html/app
+    links:
+    - mailhog:mailhog
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+    - 36001:80
+    links:
+    - backend:db
+  mailhog:
+    image: mailhog/mailhog
+    ports:
+    - 36002:8025
